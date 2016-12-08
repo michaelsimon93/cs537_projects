@@ -1,0 +1,9 @@
+.
+..
+exectest
+exectest.c
+mysh
+mysh.c
+.mysh.c.swp
+ out.txt
+

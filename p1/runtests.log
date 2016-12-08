@@ -1,0 +1,540 @@
+starting build
+
+**********************************************************************
+
+Test build
+build project using make
+
+**********************************************************************
+Trying to clean project using make clean
+make clean
+make: *** No rule to make target `clean'.  Stop.
+Trying to build project using make
+make
+make: *** No targets specified and no makefile found.  Stop.
+Trying to build using gcc
+gcc -O -Wall -o rangesort rangesort.c -I/afs/cs.wisc.edu/p/course/cs537-dusseau/ta/tests/1a
+rangesort.c: In function ‘main’:
+rangesort.c:40: warning: ‘low’ may be used uninitialized in this function
+rangesort.c:41: warning: ‘high’ may be used uninitialized in this function
+
+
+test build PASSED
+ (build project using make)
+
+starting arg
+
+**********************************************************************
+
+Test arg
+Bad arguments
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort
+Failure: rangesort gave incorrect standard error.
+Expected: "Usage: rangesort -i inputfile -o outputfile -l lowvalue -h highvalue\n"
+Got:      "usage: /tmp/tmpoRlZd_/p/rangesort <-s random seed> <-n number of records> <-o output file>\n"
+
+
+test arg FAILED
+ (Bad arguments)
+ rangesort gave incorrect standard error.
+
+starting arg2
+
+**********************************************************************
+
+Test arg2
+Bad arguments
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort a b c d
+Failure: rangesort gave incorrect standard error.
+Expected: "Usage: rangesort -i inputfile -o outputfile -l lowvalue -h highvalue\n"
+Got:      "usage: /tmp/tmpoRlZd_/p/rangesort <-s random seed> <-n number of records> <-o output file>\n"
+
+
+test arg2 FAILED
+ (Bad arguments)
+ rangesort gave incorrect standard error.
+
+starting arg3
+
+**********************************************************************
+
+Test arg3
+Missing flag
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i input -o output -h 10
+Failure: rangesort gave incorrect standard error.
+Expected: "Usage: rangesort -i inputfile -o outputfile -l lowvalue -h highvalue\n"
+Got:      "usage: /tmp/tmpoRlZd_/p/rangesort <-s random seed> <-n number of records> <-o output file>\n"
+
+
+test arg3 FAILED
+ (Missing flag)
+ rangesort gave incorrect standard error.
+
+starting arg4
+
+**********************************************************************
+
+Test arg4
+Undefined extra flag
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i input -o output -l 0 -h 8 -k invalid
+Failure: rangesort gave incorrect standard error.
+Expected: "Usage: rangesort -i inputfile -o outputfile -l lowvalue -h highvalue\n"
+Got:      "usage: /tmp/tmpoRlZd_/p/rangesort <-s random seed> <-n number of records> <-o output file>\n"
+
+
+test arg4 FAILED
+ (Undefined extra flag)
+ rangesort gave incorrect standard error.
+
+starting arg5
+
+**********************************************************************
+
+Test arg5
+Invalid range error: a non 32-bit unsigned integer value given as low value
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i input -o output -l invalid -h 10
+Failure: rangesort gave incorrect standard error.
+Expected: "Error: Invalid range value\n"
+Got:      "Error: Invalid range value"
+
+
+test arg5 FAILED
+ (Invalid range error: a non 32-bit unsigned integer value given as low value)
+ rangesort gave incorrect standard error.
+
+starting arg6
+
+**********************************************************************
+
+Test arg6
+Invalid range error: a non 32-bit unsigned integer value given as high value
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i input -o output -l 5 -h invalid
+Failure: rangesort gave incorrect standard error.
+Expected: "Error: Invalid range value\n"
+Got:      "Error: Invalid range value"
+
+
+test arg6 FAILED
+ (Invalid range error: a non 32-bit unsigned integer value given as high value)
+ rangesort gave incorrect standard error.
+
+starting badin
+
+**********************************************************************
+
+Test badin
+Bad input file
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i /invalid/path/_HFcW9 -o outfile -l 1 -h 100
+Failure: rangesort gave incorrect standard error.
+Expected: "Error: Cannot open file /invalid/path/_HFcW9\n"
+Got:      "open: No such file or directory\n"
+
+
+test badin FAILED
+ (Bad input file)
+ rangesort gave incorrect standard error.
+
+starting badout
+
+**********************************************************************
+
+Test badout
+Bad output file
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o /invalid/path/_HFcW9 -l 1 -h 100
+Failure: rangesort returned incorrect status code. Expected 1 got 0
+
+
+test badout FAILED
+ (Bad output file)
+ rangesort returned incorrect status code. Expected 1 got 0
+
+starting invalidhighvalue
+
+**********************************************************************
+
+Test invalidhighvalue
+Invalid range error: High value greater than UINT_MAX
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o outfile -l 0 -h 9999999999999
+Failure: rangesort returned incorrect status code. Expected 1 got 0
+
+
+test invalidhighvalue FAILED
+ (Invalid range error: High value greater than UINT_MAX)
+ rangesort returned incorrect status code. Expected 1 got 0
+
+starting invalidlowvalue
+
+**********************************************************************
+
+Test invalidlowvalue
+Invalid range error: Negative low value
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o outfile -l -5 -h 999
+Failure: rangesort gave incorrect standard error.
+Expected: "Error: Invalid range value\n"
+Got:      "Error: Invalid range value"
+
+
+test invalidlowvalue FAILED
+ (Invalid range error: Negative low value)
+ rangesort gave incorrect standard error.
+
+starting invalidvalues_1
+
+**********************************************************************
+
+Test invalidvalues_1
+Invalid range error: Low and high values greater than UINT_MAX
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o outfile -l 8888888888888 -h 9999999999999
+Failure: rangesort returned incorrect status code. Expected 1 got 0
+
+
+test invalidvalues_1 FAILED
+ (Invalid range error: Low and high values greater than UINT_MAX)
+ rangesort returned incorrect status code. Expected 1 got 0
+
+starting invalidvalues_2
+
+**********************************************************************
+
+Test invalidvalues_2
+Invalid range error: Negative low and high value
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o outfile -l -5 -h -1
+Failure: rangesort gave incorrect standard error.
+Expected: "Error: Invalid range value\n"
+Got:      "Error: Invalid range value"
+
+
+test invalidvalues_2 FAILED
+ (Invalid range error: Negative low and high value)
+ rangesort gave incorrect standard error.
+
+starting lowgreaterhigh
+
+**********************************************************************
+
+Test lowgreaterhigh
+Low value greater than the high value
+
+**********************************************************************
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o outfile -l 1000 -h 500
+
+
+test lowgreaterhigh PASSED
+ (Low value greater than the high value)
+
+starting empty
+
+**********************************************************************
+
+Test empty
+Empty input file. Output file should be empty
+
+**********************************************************************
+Generating input file
+/u/c/s/cs537-1/ta/tests/1a/generate -s 10 -n 0 -o /tmp/tmpoRlZd_/p/infile
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o /tmp/tmpoRlZd_/p/outfile -l 918 -h 7750
+Rangesort completed in 0.000813961029053 seconds
+Checking output
+
+
+test empty PASSED
+ (Empty input file. Output file should be empty)
+
+starting one
+
+**********************************************************************
+
+Test one
+Input file with a single record
+
+**********************************************************************
+Generating input file
+/u/c/s/cs537-1/ta/tests/1a/generate -s 10 -n 1 -o /tmp/tmpoRlZd_/p/infile
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o /tmp/tmpoRlZd_/p/outfile -l 2 -h 1215069295
+Rangesort completed in 0.000779151916504 seconds
+Checking output
+
+
+test one PASSED
+ (Input file with a single record)
+
+starting five1
+
+**********************************************************************
+
+Test five1
+Input file with five records
+
+**********************************************************************
+Generating input file
+/u/c/s/cs537-1/ta/tests/1a/generate -s 11 -n 5 -o /tmp/tmpoRlZd_/p/infile
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o /tmp/tmpoRlZd_/p/outfile -l 758693 -h 49389750
+Rangesort completed in 0.000830173492432 seconds
+Checking output
+
+
+test five1 PASSED
+ (Input file with five records)
+
+starting five2
+
+**********************************************************************
+
+Test five2
+Input file with five records
+
+**********************************************************************
+Generating input file
+/u/c/s/cs537-1/ta/tests/1a/generate -s 12 -n 5 -o /tmp/tmpoRlZd_/p/infile
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o /tmp/tmpoRlZd_/p/outfile -l 3175869 -h 11897750
+Rangesort completed in 0.000847816467285 seconds
+Checking output
+
+
+test five2 PASSED
+ (Input file with five records)
+
+starting medium
+
+**********************************************************************
+
+Test medium
+Input file with 100 records
+
+**********************************************************************
+Generating input file
+/u/c/s/cs537-1/ta/tests/1a/generate -s 13 -n 100 -o /tmp/tmpoRlZd_/p/infile
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o /tmp/tmpoRlZd_/p/outfile -l 30029984 -h 100948125
+Rangesort completed in 0.000773906707764 seconds
+Checking output
+
+
+test medium PASSED
+ (Input file with 100 records)
+
+starting large
+
+**********************************************************************
+
+Test large
+Input file with 10k records
+
+**********************************************************************
+Generating input file
+/u/c/s/cs537-1/ta/tests/1a/generate -s 14 -n 10000 -o /tmp/tmpoRlZd_/p/infile
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o /tmp/tmpoRlZd_/p/outfile -l 500000 -h 50000000
+Rangesort completed in 0.00397706031799 seconds
+Checking output
+
+
+test large PASSED
+ (Input file with 10k records)
+
+starting verylarge
+
+**********************************************************************
+
+Test verylarge
+Input file with 100k records
+
+**********************************************************************
+Generating input file
+/u/c/s/cs537-1/ta/tests/1a/generate -s 15 -n 100000 -o /tmp/tmpoRlZd_/p/infile
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /tmp/tmpoRlZd_/p/infile -o /tmp/tmpoRlZd_/p/outfile -l 100 -h 293897750
+Rangesort completed in 0.0424652099609 seconds
+Checking output
+
+
+test verylarge PASSED
+ (Input file with 100k records)
+
+starting dup
+
+**********************************************************************
+
+Test dup
+duplicate records
+
+**********************************************************************
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /u/c/s/cs537-1/ta/tests/1a/dupdata -o /tmp/tmpoRlZd_/p/outfile -l 0 -h 0
+Rangesort completed in 0.00102496147156 seconds
+Checking output
+
+
+test dup PASSED
+ (duplicate records)
+
+starting zero selected
+
+**********************************************************************
+
+Test zero selected
+Zero records sorted
+
+**********************************************************************
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /u/c/s/cs537-1/ta/tests/1a/selectedrecs -o /tmp/tmpoRlZd_/p/outfile -l 10 -h 200
+Rangesort completed in 0.000883102416992 seconds
+Checking output
+
+
+test zero selected PASSED
+ (Zero records sorted)
+
+starting one selected
+
+**********************************************************************
+
+Test one selected
+One record sorted
+
+**********************************************************************
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /u/c/s/cs537-1/ta/tests/1a/selectedrecs -o /tmp/tmpoRlZd_/p/outfile -l 460457228 -h 460457228
+Rangesort completed in 0.000916004180908 seconds
+Checking output
+
+
+test one selected PASSED
+ (One record sorted)
+
+starting all selected
+
+**********************************************************************
+
+Test all selected
+All records sorted
+
+**********************************************************************
+Running rangesort
+/tmp/tmpoRlZd_/p/rangesort -i /u/c/s/cs537-1/ta/tests/1a/selectedrecs -o /tmp/tmpoRlZd_/p/outfile -l 0 -h 1482533822
+Rangesort completed in 0.000955104827881 seconds
+Checking output
+
+
+test all selected PASSED
+ (All records sorted)
+
+**********************************************************************
+Summary:
+test build PASSED
+ (build project using make)
+
+test arg FAILED
+ (Bad arguments)
+ rangesort gave incorrect standard error.
+
+test arg2 FAILED
+ (Bad arguments)
+ rangesort gave incorrect standard error.
+
+test arg3 FAILED
+ (Missing flag)
+ rangesort gave incorrect standard error.
+
+test arg4 FAILED
+ (Undefined extra flag)
+ rangesort gave incorrect standard error.
+
+test arg5 FAILED
+ (Invalid range error: a non 32-bit unsigned integer value given as low value)
+ rangesort gave incorrect standard error.
+
+test arg6 FAILED
+ (Invalid range error: a non 32-bit unsigned integer value given as high value)
+ rangesort gave incorrect standard error.
+
+test badin FAILED
+ (Bad input file)
+ rangesort gave incorrect standard error.
+
+test badout FAILED
+ (Bad output file)
+ rangesort returned incorrect status code. Expected 1 got 0
+
+test invalidhighvalue FAILED
+ (Invalid range error: High value greater than UINT_MAX)
+ rangesort returned incorrect status code. Expected 1 got 0
+
+test invalidlowvalue FAILED
+ (Invalid range error: Negative low value)
+ rangesort gave incorrect standard error.
+
+test invalidvalues_1 FAILED
+ (Invalid range error: Low and high values greater than UINT_MAX)
+ rangesort returned incorrect status code. Expected 1 got 0
+
+test invalidvalues_2 FAILED
+ (Invalid range error: Negative low and high value)
+ rangesort gave incorrect standard error.
+
+test lowgreaterhigh PASSED
+ (Low value greater than the high value)
+
+test empty PASSED
+ (Empty input file. Output file should be empty)
+
+test one PASSED
+ (Input file with a single record)
+
+test five1 PASSED
+ (Input file with five records)
+
+test five2 PASSED
+ (Input file with five records)
+
+test medium PASSED
+ (Input file with 100 records)
+
+test large PASSED
+ (Input file with 10k records)
+
+test verylarge PASSED
+ (Input file with 100k records)
+
+test dup PASSED
+ (duplicate records)
+
+test zero selected PASSED
+ (Zero records sorted)
+
+test one selected PASSED
+ (One record sorted)
+
+test all selected PASSED
+ (All records sorted)
+
+Passed 13 of 25 tests.
+Overall 13 of 25

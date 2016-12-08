@@ -1,0 +1,16 @@
+1
+1.out
+1.txt
+exectest
+exectest.c
+in
+makefile
+mysh
+mysh2.c
+mysh.c
+out
+ out.txt
+
+redirect2
+runtests.log
+test.txt

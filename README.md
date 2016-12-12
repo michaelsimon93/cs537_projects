@@ -1,6 +1,6 @@
 # cs537_projects
 These projects were for my CS537 - Operating Systems course at the University of Wisconsin-Madison. 
-All of these projects were programmed in C. Below is the descriptions for each project:
+All of these projects were programmed in C. Below are the descriptions for each project:
 
 p1a:
 Build a sorting program called rangesort that takes in one of these generated files and sorts it based on the 4-byte key (the remainder of the record should of course be kept with the same key). Keys which fall outside of lowvalue and highvalue should be discarded (and not written to the output file). The output is written to the specified output file.

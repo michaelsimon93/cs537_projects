@@ -1,5 +1,5 @@
 # cs537_projects
-These projects were for my CS537 - Operating Systems course at the University of Wisconsin-Madison. 
+These projects were for my CS537 - Operating Systems course in the Fall of 2015 at the University of Wisconsin-Madison. 
 All of these projects were programmed in C. Below are the descriptions for each project:
 
 p1a:
